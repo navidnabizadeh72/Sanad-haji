@@ -1,44 +1,63 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
 <title>اسناد</title>
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
 
 body{
+margin:0;
 background:#111;
 font-family:tahoma;
 color:white;
+text-align:center;
+}
+
+#login{
+margin-top:120px;
+}
+
+input{
+padding:12px;
+font-size:18px;
+width:240px;
+border-radius:8px;
+border:none;
+text-align:center;
+}
+
+button{
+padding:12px 25px;
+font-size:18px;
+margin-top:15px;
+border:none;
+border-radius:8px;
+background:#2196f3;
+color:#fff;
+}
+
+#gallery{
+display:none;
 padding:20px;
 }
 
-h1{
-text-align:center;
-margin-bottom:25px;
-}
-
-.gallery{
+.grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
 gap:20px;
 }
 
-.photo{
+.item{
 position:relative;
-overflow:hidden;
-border-radius:12px;
 }
 
-.photo img{
+.item img{
 width:100%;
-display:block;
+border-radius:10px;
 pointer-events:none;
 user-select:none;
 -webkit-user-drag:none;
@@ -46,13 +65,13 @@ user-select:none;
 
 .watermark{
 position:absolute;
-bottom:10px;
-right:10px;
-background:rgba(255,255,255,.35);
+bottom:8px;
+right:8px;
+background:rgba(255,255,255,.4);
+padding:4px 8px;
+font-size:11px;
+border-radius:5px;
 color:#000;
-padding:4px 10px;
-border-radius:6px;
-font-size:12px;
 font-weight:bold;
 }
 
@@ -63,25 +82,148 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,.95);
+background:#000d;
 justify-content:center;
 align-items:center;
-z-index:9999;
+z-index:999;
 }
 
 #viewer img{
 max-width:95%;
 max-height:95%;
 }
+
 </style>
+
 </head>
 
 <body>
 
-<h1>اسناد</h1>
+<div id="login">
 
-<div class="gallery">
+<h2>ورود</h2>
 
-<div class="photo">
+<input id="pass" type="password" placeholder="رمز عبور">
+
+<br>
+
+<button onclick="login()">ورود</button>
+
+</div>
+
+<div id="gallery">
+
+<h2>اسناد</h2>
+
+<div class="grid">
+  <div class="item">
 <img src="images/Images/1.jpg" onclick="show(this.src)">
-<div class="water
+<div class="watermark">Sanad-haji</div>
+</div>
+
+<div class="item">
+<img src="images/Images/2.jpg" onclick="show(this.src)">
+<div class="watermark">Sanad-haji</div>
+</div>
+
+<div class="item">
+<img src="images/Images/3.jpg" onclick="show(this.src)">
+<div class="watermark">Sanad-haji</div>
+</div>
+
+<div class="item">
+<img src="images/Images/4.jpg" onclick="show(this.src)">
+<div class="watermark">Sanad-haji</div>
+</div>
+
+<div class="item">
+<img src="images/Images/5.jpg" onclick="show(this.src)">
+<div class="watermark">Sanad-haji</div>
+</div>
+
+<div class="item">
+<img src="images/Images/6.jpg" onclick="show(this.src)">
+<div class="watermark">Sanad-haji</div>
+</div>
+
+<div class="item">
+<img src="images/Images/7.jpg" onclick="show(this.src)">
+<div class="watermark">Sanad-haji</div>
+</div>
+
+<div class="item">
+<img src="images/Images/8.jpg" onclick="show(this.src)">
+<div class="watermark">Sanad-haji</div>
+</div>
+
+</div>
+
+</div>
+
+<div id="viewer" onclick="hide()">
+<img id="big">
+</div>
+<script>
+
+function login(){
+
+var p=document.getElementById("pass").value;
+
+if(p==="3793551"){
+
+document.getElementById("login").style.display="none";
+document.getElementById("gallery").style.display="block";
+
+}else{
+
+alert("رمز عبور اشتباه است");
+
+}
+
+}
+
+function show(src){
+
+document.getElementById("viewer").style.display="flex";
+document.getElementById("big").src=src;
+
+}
+
+function hide(){
+
+document.getElementById("viewer").style.display="none";
+
+}
+
+// جلوگیری از راست کلیک
+document.addEventListener("contextmenu",function(e){
+e.preventDefault();
+});
+
+// جلوگیری از Drag
+document.addEventListener("dragstart",function(e){
+e.preventDefault();
+});
+
+// جلوگیری از انتخاب متن
+document.addEventListener("selectstart",function(e){
+e.preventDefault();
+});
+
+// غیرفعال کردن چند میانبر رایج
+document.addEventListener("keydown",function(e){
+
+if(e.key==="F12"){
+e.preventDefault();
+}
+
+if(e.ctrlKey && ["u","U","s","S","p","P","a","A","i","I","j","J"].includes(e.key)){
+e.preventDefault();
+}
+
+});
+
+</script>
+
+</body>
+</html>
